@@ -1,0 +1,13 @@
+# System directories and files
+__pycache__/
+.idea/
+
+# Suffix
+*.gz
+*.swp
+
+# Directories
+TestingData/
+Utils/
+Programs/
+Databases/
