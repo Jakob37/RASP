@@ -139,7 +139,7 @@ def parse_arguments():
                         choices=['fasttree', 'raxml'], default='fasttree')
     parser.add_argument('--chimera_checking',
                         help='How chimera checking is performed',
-                        choices=['none', 'uchime'], default='none')
+                        choices=['none', 'vchime'], default='vchime')
 
     args = parser.parse_args()
     return args

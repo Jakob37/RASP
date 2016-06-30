@@ -67,7 +67,7 @@ class PrepareOTUsWrapper(program_module.ProgramWrapper):
                                filter_threshold))
 
         chimera_checked_otu_fasta = None
-        if chimera_checking == 'uchime':
+        if chimera_checking == 'vchime':
 
             # Perform chimeric checking
             chimera_checked_otu_fasta = self.output_dir + 'non_chimeric_fp.fasta'

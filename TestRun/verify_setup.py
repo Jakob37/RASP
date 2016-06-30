@@ -27,7 +27,7 @@ def main():
     print('Will run the RASP command: {}'.format(rasp_command))
     print('Output is written to {out} and {err}'.format(out=rasp_out_log, err=rasp_err_log))
 
-    print('Process in running...')
+    print('Process is running! please be patient, this can take a few minutes...')
     with open(rasp_out_log, 'w') as stdout_fh, open(rasp_err_log, 'w') as stderr_fh:
 
         rasp_process = subprocess.call(rasp_command.split(' '), stdout=stdout_fh, stderr=stderr_fh)
