@@ -59,7 +59,10 @@ Hopefully this can be remedied in the future.
 
 <pre>
 # Python3 packages
+pip3 install numpy
 pip3 install matplotlib
+pip3 install biopython
+pip3 install scikit-bio
 </pre>
 
 ##### Clone the GitHub repository

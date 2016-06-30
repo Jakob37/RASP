@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from src.pipeline_modules import program_module
 
 __author__ = 'Jakob Willforss'

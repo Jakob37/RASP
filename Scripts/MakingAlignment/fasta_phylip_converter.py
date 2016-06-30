@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 # Inspired by:
 # https://github.com/Phylogenetics-Brown-BIOL1425/phylogeneticbiology/blob/master/scripts/fasta2phylip.py

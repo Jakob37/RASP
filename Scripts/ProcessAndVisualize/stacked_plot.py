@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 __author__ = "Jakob Willforss"
 
 import matplotlib
