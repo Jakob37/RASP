@@ -4,11 +4,10 @@ from src.pipeline_modules import program_module
 class PreprocessingWrapper(program_module.ProgramWrapper):
 
     """
-    Data processing PREVIOUS to running the pipeline
-    Example: Decompressing compressed input
+    Data processing performed before the processing steps
     """
 
-    def setup_commands(self, file_path_dict, option_dict=None):
+    def setup_commands(self, file_path_dict, option_dict=None, delim=','):
 
         compressed_input_fp = file_path_dict['input']['multiple_read_files']
         labels = file_path_dict['input']['labels']
@@ -17,10 +16,10 @@ class PreprocessingWrapper(program_module.ProgramWrapper):
             get_decompression_command(self.config_file, compressed_input_fp, self.output_dir))
 
         decompressed_filepaths \
-            = [self.output_dir + '.'.join(fp.split('/')[-1].split('.')[:-1]) for fp in compressed_input_fp.split(' ')]
+            = [self.output_dir + '.'.join(fp.split('/')[-1].split('.')[:-1]) for fp in compressed_input_fp.split(delim)]
 
         merged_output = self.output_dir + 'merged_output.fastq'
-        self.add_command_entry(get_merge_command(self.config_file, ' '.join(decompressed_filepaths),
+        self.add_command_entry(get_merge_command(self.config_file, delim.join(decompressed_filepaths),
                                                  merged_output, labels))
 
         file_path_dict[self._name]['decompressed_input'] = merged_output

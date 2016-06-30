@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-__author__ = "Jakob Willforss"
 
 import argparse
 
@@ -12,11 +11,11 @@ to the header of respective FASTA file
 def main():
 
     args = parse_arguments()
-    input_files = args.input_files.split(' ')
+    input_files = args.input_files.split(args.delim)
 
     labels = None
     if args.labels is not None:
-        labels = args.labels.split('\t')
+        labels = args.labels.split(args.delim)
         assert len(input_files) == len(labels), 'Must use same number of labels as files! Labels: {}'.format(labels)
 
     merge_files(input_files, args.output, labels=labels)
@@ -33,6 +32,7 @@ def parse_arguments():
     parser.add_argument('-l', '--labels',
                         help='Accepts labels divided by tabs, must be same length as input files string')
     parser.add_argument('-o', '--output', required=True)
+    parser.add_argument('--delim', help='File/label separator', default=',')
     args = parser.parse_args()
     return args
 
@@ -56,7 +56,7 @@ def merge_files(files_fp, output_fp, labels=None):
 
                     if line_nbr % 2 == 1:
                         line = line.rstrip()
-                        if len(line) > 1:  # To prevent adding labels to empty lines
+                        if len(line) > 1:  # Prevent adding labels to empty lines
                             line = line + '|{}\n'.format(label)
                         else:
                             line += '\n'

@@ -1,7 +1,7 @@
 import gzip
 
 
-def extract_input_information(file_path_dict, output_path):
+def extract_input_information(file_path_dict, output_path, delim=','):
 
     """
     Reads the input strings with filepaths and labels and outputs
@@ -11,8 +11,8 @@ def extract_input_information(file_path_dict, output_path):
     compressed_input_fp = file_path_dict['input']['multiple_read_files']
     label_string = file_path_dict['input']['labels']
 
-    filepaths = compressed_input_fp.split(' ')
-    labels = label_string.split('\t')
+    filepaths = compressed_input_fp.split(delim)
+    labels = label_string.split(delim)
 
     linecounts = list()
 

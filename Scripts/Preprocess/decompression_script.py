@@ -16,7 +16,7 @@ def main():
 
     args = parse_arguments()
     if args.decompression_mode == 'gz':
-        extract_gz_file(args.input, args.output_base)
+        extract_gz_file(args.input, args.output_base, args.delimiter)
     elif args.decompression_mode == 'targz':
         extract_tar_gz_archive(args.input, args.output)
     else:
@@ -28,18 +28,19 @@ def parse_arguments():
     """Parses command line arguments"""
 
     parser = argparse.ArgumentParser(description=program_description)
-    parser.add_argument('-i', '--input', help='Accepts multiple files divided by a space', required=True)
+    parser.add_argument('-i', '--input', help='Accepts multiple files divided by the separator', required=True)
     parser.add_argument('-o', '--output_base', required=True)
     parser.add_argument('-c', '--decompression_mode', choices=['gz', 'targz'], default='gz')
+    parser.add_argument('-d', '--delimiter', default=',')
     args = parser.parse_args()
     return args
 
 
-def extract_gz_file(input_line, output_base):
+def extract_gz_file(input_line, output_base, delim):
 
     """Takes a .gz file and decompress it into provided output filepath"""
 
-    multiple_gz_input_fp = input_line.split(' ')
+    multiple_gz_input_fp = input_line.split(delim)
 
     for input_gz_fp in multiple_gz_input_fp:
 

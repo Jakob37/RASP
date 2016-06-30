@@ -54,6 +54,10 @@ def main():
     config_obj = get_config_settings('settings.conf')
     print_initiation_message(args)
 
+    if not os.path.exists(args.output_directory):
+        print('Creating the output directory: {}'.format(args.output_directory))
+        os.makedirs(args.output_directory)
+
     tot_base_path = args.output_directory + '/'
     path_func = get_path_function(tot_base_path)
 
