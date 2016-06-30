@@ -269,22 +269,11 @@ def get_chimera_checking_command(config, unchecked_fp, non_chimeric_fp):
     description = 'chim. checking'
     short = 'cc'
 
-    # command = [config['programs']['usearch'],
-    #            '-uchime_ref', unchecked_fp,
-    #            '-db', config['databases']['uchime_16S_ref'],
-    #            '-uchimeout', str(non_chimeric_fp + '.OUTPUT'),
-    #            '-strand', 'plus',
-    #            '-nonchimeras', non_chimeric_fp]
-
     command = [config['programs']['vsearch'],
                '-uchime_ref', unchecked_fp,
                '-db', config['databases']['uchime_16S_ref'],
                '-uchimeout', str(non_chimeric_fp + '.OUTPUT'),
                '-nonchimeras', non_chimeric_fp]
-
-    # command = [config['programs']['usearch'],
-    #            '-uchime_denovo', unchecked_fp,
-    #            '-nonchimeras', non_chimeric_fp]
 
     return program_module.ProgramCommand(description, short, command)
 

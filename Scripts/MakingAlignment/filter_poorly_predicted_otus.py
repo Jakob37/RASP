@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-__author__ = "Jakob Willforss"
 
 import argparse
 import re
@@ -46,8 +45,9 @@ def main():
     if args.fixed_rank:
         output_linefiltered_file(fixrank_fh, tax_depth_dict, remaining_labels)
 
-    otu_fh.close()
-    filtered_otu_fh.close()
+    for fh in filehandles:
+        if fh is not None:
+            fh.close()
 
 
 def parse_arguments():

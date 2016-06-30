@@ -22,7 +22,6 @@ class PynastWrapper(program_module.ProgramWrapper):
         raw_otus = file_path_dict['prepare_otus']['final_otus']
         otu_taxa_table = file_path_dict['rdp_classifier']['otu_significant_taxa']
         abundancy_matrix = file_path_dict['prepare_otus']['filtered_otu_abundancy']
-        #rdp_fix_rank = file_path_dict['rdp_classifier']['rdp_otu_taxa']
         self.add_command_entry(get_filter_bad_taxa_command(self.config_file, raw_otus, abundancy_matrix,
                                                            otu_taxa_table, self.output_dir))
 
@@ -134,9 +133,13 @@ def get_convert_to_phylip_command(config, pynast_alignment_fasta, pynast_alignme
     description = 'Convert fas/phy'
     short = 'Cfp'
 
-    command = [config['programs']['fasta2phylip'],
-               pynast_alignment_fasta,
-               pynast_alignment_phylip]
+    command = [config['scripts']['fasta_to_phylip'],
+               '--input_fasta', pynast_alignment_fasta,
+               '--output_phylip', pynast_alignment_phylip]
+
+    # command = [config['programs']['fasta2phylip'],
+    #            pynast_alignment_fasta,
+    #            pynast_alignment_phylip]
 
     return program_module.ProgramCommand(description, short, command)
 

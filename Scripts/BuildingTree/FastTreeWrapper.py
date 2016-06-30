@@ -20,7 +20,6 @@ args = parser.parse_args()
 
 out_fh = open(args.output, 'w')
 
-# process = subprocess.Popen(['/var/cgi-bin/PipelineFolder/Pipeline/Programs/FastTree', '-nt', args.input], stdout=out_fh)
 process = subprocess.Popen([args.fasttree_path, '-nt', args.input], stdout=out_fh)
 process.wait()
 

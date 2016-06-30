@@ -1,4 +1,4 @@
-RASP - Rapid Amplicon Sequence Pipeline
+## RASP - Rapid Amplicon Sequence Pipeline
 
 RASP is developed to aid study of metagenomic 16S rRNA datasets.
 There are many powerful tools available for this type of analysis such as QIIME and Mothur.
@@ -14,31 +14,65 @@ It is possible to run the RASP pipeline locally using the Python source found on
 It requires that you have several software and databases installed, but when you do have,
 it can quickly and easily do the processing.
 
-== Installation procedure ==
+### Installation procedure
 
-This procedure was tested on a freshly installed Ubuntu 16.04 computer. It will likely work
-on other Linux-based systems, possibly requiring minor tweaks.
+This procedure was tested on a freshly installed Ubuntu 16.04 computer.
+RASP will run on other Linux systems if you set up its dependencies, but the
+exact installation steps might vary.
 
-* Clone the GitHub repository
+Feel free to contact me if you run into trouble, preferably in the following forum:
+
+FORUM
+
+##### Basic packages for environment
+
+If not a root user, prefix the apt-get commands with sudo: "sudo apt-get install git".
+
+<pre>
+apt-get install git
+
+# Choose your preferred way to install python3-pip
+apt-get install python3-pip
+
+# Dependencies for matplotlib
+apt-get libpng-dev libjpeg8-dev libfreetype6-dev
+
+# This is used for rendering by matplotlib
+# This means that the visualizations can be made on a system not running graphics
+apt-get install xvfb
+
+# Required for installation of RDP Classifier
+sudo apt-get install default-jdk ant
+</pre>
+
+##### Setting up required Python packages
+
+Unfortunately currently both Python2 and Python3 is required.
+Make sure that you have both pip2 and pip3 installed.
+Hopefully this can be remedied in the future.
+
+<pre>
+# Python2 packages
+# pip install numpy
+# pip install pynast
+</pre>
+
+<pre>
+# Python3 packages
+pip3 install matplotlib
+</pre>
+
+##### Clone the GitHub repository
+
+Get RASP!
 
 <pre>
 git clone https://Jakob37@bitbucket.org/jakobbioinformatics/rasp_pipeline
 </pre>
 
-* Basic packages for environment
+### Retrieve software dependencies (and databases)
 
-<pre>
-sudo apt-get install git
-
-# Required for installation of RDP Classifier
-sudo apt-get install default-jdk
-sudo apt-get install ant
-
-</pre>
-
-* Retrieve software dependencies (and databases)
-
-** Prinseq
+##### Prinseq
 
 Prinseq is used to quality check the reads.
 Download prinseq-lite standalone version froum its download page.
@@ -46,7 +80,19 @@ For this guide, version 0.20.4 was used.
 
 https://sourceforge.net/projects/prinseq/files/standalone
 
-** CD-HIT
+After downloading, make the script executable and link it into the
+RASP programs directory.
+
+<pre>
+cd prinseq_dir
+chmod +x prinseq-lite.pl
+cd ~/rasp_pipeline/Programs
+ln -s ~/prinseq_dir/prinseq-lite.pl
+</pre>
+
+Finally setup the configuration file "settings.conf" to point to the correct name.
+
+##### CD-HIT
 
 CD-HIT is used for clustering similar sequences into OTUs. It can be retrieved from:
 
@@ -62,7 +108,7 @@ make
 
 The binary named 'cd-hit-est' is used in RASP.
 
-** RDP Classifier
+##### RDP Classifier
 
 RDP Classifier is used for taxonomic assignment.
 
@@ -81,7 +127,7 @@ This will generate the required jar-files used for classification.
 
 RDP Classifier is per default trained for classification of 16S rRNA.
 
-** Vsearch
+##### Vsearch
 
 Vsearch performs reference based chimera checking of the OTUs.
 
@@ -101,18 +147,7 @@ cd vsearch
 make
 </pre>
 
-** Fasta2Phylip.pl
-
-Conversion of FASTA to Phylip format is based on a Perl-script which can be retrieved from the following
-path:
-
-<pre>
-wget https://raw.githubusercontent.com/josephhughes/Sequence-manipulation/master/Fasta2Phylip.pl
-</pre>
-
-This is probably better replaced with a BioPython implementation.
-
-** PyNAST
+##### PyNAST
 
 PyNAST is a Python-package which wraps the NAST-aligner. It can be installed directly with
 the Python package manager pip. It also requires us to download the software Uclust.
@@ -127,10 +162,25 @@ mv uclustq1.2.22_i86linux64 uclust
 chmod +x uclust
 
 pip install numpy
+pip install cogent
 pip install pynast
 </pre>
 
-** FastTree
+Navigate into the rasp_pipeline/Programs directory, and then link in the PyNAST.
+In this case, the binary for PyNAST was located in the ~/.local/bin directory.
+
+<pre>
+cd ~/rasp_pipeline/Programs
+ln -s ~/.local/bin/pynast
+</pre>
+
+###### Versions used
+
+Cogent v1.9
+Numpy v1.11.1
+PyNAST v1.2.2
+
+##### FastTree
 
 FastTree is used to build a tree-file from the NAST-alignment. It is extremely fast, which made it
 possible to include it in this pipeline.
@@ -141,26 +191,33 @@ More information is found on http://www.microbesonline.org/fasttree
 wget http://www.microbesonline.org/fasttree/FastTree
 </pre>
 
-** Databases
+##### Databases
 
 Currently RASP uses databases from GreenGenes for chimera checking, and NAST alignment.
 There are retrieved from the web page:
 
 http://greengenes.secondgenome.com/downloads/database/13_5
+http://www.mothur.org/w/images/2/21/Greengenes.gold.alignment.zip
 
-gg_13_5_pynast.fasta.gz (580MB) is used for PyNAST alignment.
-gg_13_5_otus.tar.gz (304 MB) is used for identifying chimeric sequences.
+// gg_13_5_pynast.fasta.gz (580MB) is used for PyNAST alignment.
 
-Note that both files are quite large.
+* rRNA16S.gold.NAST_ALIGNED.fasta
+* gg_13_5_otus.tar.gz (304 MB) is used for identifying chimeric sequences.
 
-* Setting up dependencies for RASP
+Note that the collection of Green Genes sequences is quite extensive.
+
+<pre>
+wget http://www.mothur.org/w/images/2/21/Greengenes.gold.alignment.zip
+</pre>
 
 
+### Citing RASP
 
-* Citing RASP
+### References
 
-
-* References
+RASP couldn't possibly have been made possible without a number of software
+that have been made available for public use. When using RASP, you use the software
+outlined below too.
 
 Prinseq
 Schmieder R and Edwards R: Quality control and preprocessing of metagenomic datasets.
