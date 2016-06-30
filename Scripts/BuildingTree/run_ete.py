@@ -1,8 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 import argparse
 import math
-#noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences
 from ete2 import Tree, TreeStyle, TextFace, AttrFace, faces, NodeStyle, CircleFace
 
 TREE_TITLE = 'Phylogenetic tree (produced using ETE)'
@@ -21,12 +21,14 @@ def main():
     color_dict = get_color_dict(args.color_taxa)
     filtered_taxa_color_dict = get_filtered_taxa_color_dict(args.color_taxa)
 
-    rename_labels(tree, label_dict, circle_size_dict, color_dict)
-    style = get_tree_style()
+    rename_labels(tree, label_dict, circle_size_dict, color_dict, font_size=11)
+
+    style = get_tree_style(scale=400, vertical_margin=0)
     style.title.add_face(TextFace(TREE_TITLE, fsize=18), column=0)
     add_legend(style, filtered_taxa_color_dict)
 
-    tree.render(args.output + '.svg', w=500, units='mm', tree_style=style)
+    # tree.render(args.output + '.png', w=500, units='mm', tree_style=style)
+    tree.render(args.output + '.svg', tree_style=style)
 
 
 def parse_arguments():
@@ -71,8 +73,6 @@ def get_scaled_abundancy_dict(abundancy_file_path, circle_max_radius=30):
     for otu in abund_dict:
         abund_radius_dict[otu] = math.sqrt(abund_dict[otu] / math.pi)
 
-    # abund_radius_dict = {otu: math.sqrt(abund / math.pi) for otu, abund in abund_dict.items()}
-
     return abund_radius_dict
 
 
@@ -97,7 +97,7 @@ def get_filtered_taxa_color_dict(color_taxa_fp):
         color = value[0]
         taxa = value[1]
 
-        if not taxa in filtered_taxa_color_dict.keys():
+        if taxa not in filtered_taxa_color_dict.keys():
             filtered_taxa_color_dict[taxa] = color
 
     return filtered_taxa_color_dict
@@ -111,22 +111,26 @@ def add_legend(style, taxa_color_dict):
     circle_radius = 7
 
     for item in taxa_color_dict.items():
-        taxa = item[0]
+        taxa = item[0] + "  "
         color = item[1]
         style.legend.add_face(TextFace(taxa, fsize=14), column=0)
         style.legend.add_face(CircleFace(radius=circle_radius, color=color), column=1)
 
 
-def get_tree_style():
+def get_tree_style(scale=None, vertical_margin=None):
 
     """Setups the tree-style used when rendering the tree"""
 
     style = TreeStyle()
     style.show_leaf_name = False
-    #style.mode = 'c'  # This is used to render the trees in circular mode
-    style.scale = 400
+
+    if scale:
+        style.scale = scale
+
     style.show_border = True
-    style.branch_vertical_margin = 30
+
+    if vertical_margin:
+        style.branch_vertical_margin = vertical_margin
 
     return style
 
@@ -155,11 +159,10 @@ def extract_dictionary_from_file(filepath, val_extraction=None):
         for key in dictionary:
             processed_val_dict[key] = val_extraction(dictionary[key])
 
-        #processed_val_dict = {key: val_extraction(value) for key, value in dictionary.items()}
         return processed_val_dict
 
 
-def rename_labels(tree, label_dict, circle_size_dict, color_dict):
+def rename_labels(tree, label_dict, circle_size_dict, color_dict, font_size=12):
 
     """Changes the OTU-naming to taxa-naming for the leaves"""
 
@@ -173,7 +176,7 @@ def rename_labels(tree, label_dict, circle_size_dict, color_dict):
             nstyle['size'] = circle_size_dict[otu]
             color = color_dict[otu]
 
-            node.add_face(TextFace(taxa_name, fsize=12, fgcolor=color), 0)
+            node.add_face(TextFace(taxa_name, fsize=font_size, fgcolor=color), 0)
 
         else:
             nstyle['size'] = 0

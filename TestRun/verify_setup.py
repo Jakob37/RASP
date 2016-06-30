@@ -3,7 +3,6 @@
 import shutil
 import os
 import subprocess
-import time
 
 
 def main():
@@ -27,7 +26,7 @@ def main():
     print('Will run the RASP command: {}'.format(rasp_command))
     print('Output is written to {out} and {err}'.format(out=rasp_out_log, err=rasp_err_log))
 
-    print('Process is running! please be patient, this can take a few minutes...')
+    print('Process is running! Please be patient, this can take a few minutes...')
     with open(rasp_out_log, 'w') as stdout_fh, open(rasp_err_log, 'w') as stderr_fh:
 
         rasp_process = subprocess.call(rasp_command.split(' '), stdout=stdout_fh, stderr=stderr_fh)
@@ -92,11 +91,11 @@ def evaluate_output_count(expected_count_dict, current_count_dict):
             print('{:<20} Expected {} and got {}, great!'
                   .format(current_dir, expected_count, current_count))
         elif current_count == 0 or current_count is None:
-            print('{:<20} Expected {} but found zero files, likely fatal crash!'
+            print('{:<20} Expected {} but found zero files, likely fatal error!'
                   .format(current_dir, expected_count))
             fatal_errors += 1
         elif current_count < expected_count:
-            print('{:<20} Expected {} but only got {}, likely fatal error'
+            print('{:<20} Expected {} but only got {}, likely error'
                   .format(current_dir, expected_count, current_count))
             likely_errors += 1
         else:
@@ -109,10 +108,10 @@ def evaluate_output_count(expected_count_dict, current_count_dict):
     if fatal_errors > 0:
         print('You received {} fatal errors, this needs to be fixed'.format(fatal_errors))
     if likely_errors > 0:
-        print('You received {} likely errors, this likely means that something needs to be fixed'.format(likely_errors))
+        print('You received {} likely errors, this needs to be investigated'.format(likely_errors))
 
     if fatal_errors == 0 and likely_errors == 0:
-        print('You received no errors. You are likely good to go!')
+        print('You received no errors. You are good to go!')
 
 
 if __name__ == '__main__':

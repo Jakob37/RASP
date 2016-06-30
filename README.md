@@ -5,81 +5,98 @@ There are many powerful tools available for this type of analysis such as QIIME 
 Those often require significant effort to learn to use and to process the data with.
 
 The purpose with RASP is to provide an intuitive and rapid platform for quickly and easily running
-through your analysis. It is implemented with a web interface, allowing processing without
-any installation procedure. This is the recommended tool for most analyses.
+through your analysis. RASP is implemented together with a web interface, allowing anyone to run RASP
+without neither downloads or installation procedures. You only need a browser, and your 16S amplicon
+reads in gzipped FASTQ format.
 
 http://mbio-serv2.mbioekol.lu.se/RASP
 
-It is possible to run the RASP pipeline locally using the Python source found on this page.
-It requires that you have several software and databases installed, but when you do have,
-it can quickly and easily do the processing.
+### Running RASP locally
+
+Simple command for running RASP locally for two input files:
+
+<pre>
+./main.py --input_files file1.fastq.gz,file2.fastq.gz --input_labels sample1,sample2 --output_directory my_output_dir
+</pre>
+
+The installation procedure for RASP is not trivial, as it makes use of several programs and Python packages.
+If using the web implementation is a viable alternative, I would recommend you to use that.
+
+But if you want to run RASP locally, and are prepared for setting up some Linux dependencies, continue reading...
 
 ### Installation procedure
 
 This procedure was tested on a freshly installed Ubuntu 16.04 computer.
-RASP will run on other Linux systems if you set up its dependencies, but the
-exact installation steps might vary.
+It should be possible to run RASP on other Linux systems if you set up its dependencies properly, but the
+exact installation procedure might differ from the one shown here.
 
-Feel free to contact me if you run into trouble, preferably in the following forum:
+##### Get RASP!
 
-FORUM
+To retrieve the RASP source code, you can either clone the repository, or download it as a Zip through
+the GitHub interface.
+
+To clone the RASP repository, run the following:
+
+<pre>
+git clone https://Jakob37@bitbucket.org/jakobbioinformatics/rasp_pipeline
+</pre>
 
 ##### Basic packages for environment
 
 If not a root user, prefix the apt-get commands with sudo: "sudo apt-get install git".
 
+Many of the dependencies here were necessary to run different components of RASP.
+You can either run them one and one, or all together.
+
+* git is needed to clone repositories from GitHub
+* python3-pip is my preferred way to install Python3-packages. Python2-pip is pre-installed on Ubuntu 16.04.
+* libpng-dev, libjpeg8-dev, libfreetype6-dev amd xvfb are dependencies for generating the Matplotlib graphics
+* python-qt4 is needed to run the Python package ete2 used to visualize the phylogenetic tree
+* default-jdk and ant are used for installation of RDP Classifier
+
+To install all the dependencies at once, copy and paste the following into your terminal.
+
 <pre>
-apt-get install git
-
-# Choose your preferred way to install python3-pip
-apt-get install python3-pip
-
-# Dependencies for matplotlib
-apt-get libpng-dev libjpeg8-dev libfreetype6-dev
-
-# This is used for rendering by matplotlib
-# This means that the visualizations can be made on a system not running graphics
-apt-get install xvfb
-
-# Required for installation of RDP Classifier
-sudo apt-get install default-jdk ant
+apt-get install git python3-pip python-qt4 apt-get libpng-dev libjpeg8-dev libfreetype6-dev apt-get install xvfb default-jdk ant
 </pre>
 
 ##### Setting up required Python packages
 
-Unfortunately currently both Python2 and Python3 is required.
-Make sure that you have both pip2 and pip3 installed.
-Hopefully this can be remedied in the future.
+Unfortunately, currently both Python2 and Python3 is required to run RASP locally as software
+like PyNAST only is available for Python2, while RASP is implemented in Python3.
+Hopefully, the Python2 dependency can be dropped at a later point.
+
+You need to have both pip2 and pip3 installed. Make sure to keep track of which version you are using.
+The default "pip" command can refer to either version depending on your system. To
+check which version it is, you can run:
 
 <pre>
-# Python2 packages
-# pip install numpy
-# pip install pynast
+pip --version
 </pre>
 
+Python2 packages.
+
 <pre>
-# Python3 packages
+# pip install numpy
+# pip install pynast
+pip install ete2
+</pre>
+
+Python3 packages
+
+<pre>
 pip3 install numpy
 pip3 install matplotlib
 pip3 install biopython
 pip3 install scikit-bio
 </pre>
 
-##### Clone the GitHub repository
-
-Get RASP!
-
-<pre>
-git clone https://Jakob37@bitbucket.org/jakobbioinformatics/rasp_pipeline
-</pre>
-
 ### Retrieve software dependencies (and databases)
 
-##### Prinseq
+##### Prinseq (v0.20.4)
 
 Prinseq is used to quality check the reads.
-Download prinseq-lite standalone version froum its download page.
-For this guide, version 0.20.4 was used.
+Download prinseq-lite standalone version from its download page.
 
 https://sourceforge.net/projects/prinseq/files/standalone
 
@@ -97,7 +114,7 @@ Finally setup the configuration file "settings.conf" to point to the correct nam
 
 ##### CD-HIT
 
-CD-HIT is used for clustering similar sequences into OTUs. It can be retrieved from:
+CD-HIT is used for clustering similar sequences. It can be retrieved from:
 
 https://github.com/weizhongli/cdhit
 
@@ -118,7 +135,6 @@ RDP Classifier is used for taxonomic assignment.
 First, the RDP Tools were cloned:
 
 <pre>
-
 git clone https://github.com/rdpstaff/RDPTools.git
 cd RDPTools
 git submodule init
@@ -177,16 +193,9 @@ cd ~/rasp_pipeline/Programs
 ln -s ~/.local/bin/pynast
 </pre>
 
-###### Versions used
-
-Cogent v1.9
-Numpy v1.11.1
-PyNAST v1.2.2
-
 ##### FastTree
 
-FastTree is used to build a tree-file from the NAST-alignment. It is extremely fast, which made it
-possible to include it in this pipeline.
+FastTree is used to build a tree-file from the NAST-alignment.
 
 More information is found on http://www.microbesonline.org/fasttree
 
@@ -197,7 +206,8 @@ wget http://www.microbesonline.org/fasttree/FastTree
 ##### Databases
 
 Currently RASP uses databases from GreenGenes for chimera checking, and NAST alignment.
-There are retrieved from the web page:
+
+The GreenGenes database
 
 http://greengenes.secondgenome.com/downloads/database/13_5
 http://www.mothur.org/w/images/2/21/Greengenes.gold.alignment.zip
