@@ -113,7 +113,7 @@ def get_pynast_command(config, filtered_otus, pynast_alignment_fasta, pynast_log
     else:
         raise AttributeError('Chosen RDP database: {} doesn\'t exist!'.format(rdp_database))
 
-    command = [config['other']['pynast'],
+    command = [config['programs']['pynast'],
                '-i', filtered_otus,
                '-t', pynast_database,
                '-l', MIN_INPUT_TO_ALIGNMENT_LENGTH,

@@ -2,12 +2,15 @@
 __pycache__/
 .idea/
 
+# Specific files
+settings.conf
+
 # Suffix
 *.swp
 
 # Directories
 TestingData/
 Utils/
-Programs/
-Databases/
 output_files/
+MyDatabases/
+MyPrograms/
