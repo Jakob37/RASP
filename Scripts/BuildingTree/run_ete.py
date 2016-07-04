@@ -4,6 +4,7 @@ import argparse
 import math
 # noinspection PyUnresolvedReferences
 from ete2 import Tree, TreeStyle, TextFace, AttrFace, faces, NodeStyle, CircleFace
+import sys
 
 TREE_TITLE = 'Phylogenetic tree (produced using ETE)'
 
@@ -14,6 +15,12 @@ def main():
 
     tree = Tree(args.input)
     midpoint_root = tree.get_midpoint_outgroup()
+
+    if midpoint_root is None:
+        print('Warning: Was unable to assign midpoint outgroup - Likely consequence of too few OTUs')
+        print('Terminating tree building')
+        sys.exit()
+
     tree.set_outgroup(midpoint_root)
 
     circle_size_dict = get_scaled_abundancy_dict(args.abundancies)
