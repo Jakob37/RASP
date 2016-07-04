@@ -15,21 +15,20 @@ Currently, RASP provides the following analysis:
 * Chimera checking the OTUs
 * Visualization of taxonomic composition of the different samples
 * Calculation and visualization of alpha-diversity indices for each sample
-* Generation and visualization of a phylogenetic tree for the OTUs
+* Generation and visualization of a phylogenetic tree
 
 RASP is implemented together with a web interface, allowing anyone to run RASP
 without neither downloads or installation procedures. Here, you can easily upload your samples,
-and later see and download the results of the processing. You only need a browser, and your 16S amplicon
+and later see and download the results of the processing. You only need a browser and your 16S amplicon
 reads in gzipped FASTQ format.
 
 http://mbio-serv2.mbioekol.lu.se/RASP
 
 This is the recommended and easiest way of using RASP.
 
-RASP can also be ran locally, and when installed,
-provides a straight-forward way of running the analysis on your computer. Be aware though that the installation procedure
-takes some effort due to the many dependencies of RASP. If you are ready to get your hands dirty with some terminal-work,
-continue reading.
+RASP can also be run locally, and when installed the full analysis can be executed locally by a single command.
+Be aware though that the installation procedure takes some effort due to the many dependencies of RASP.
+If you are ready to get your hands dirty with some terminal-work, continue reading.
 
 If you run into trouble, feel free to write me a line:
 
@@ -37,7 +36,7 @@ jakob (dot) willforss (at) gmail (dot) com
 
 ## Running RASP locally
 
-After setting up its dependencies, RASP can be ran from the terminal in the following way:
+After setting up its dependencies, RASP can be run from the terminal in the following way:
 
 <pre>
 ./main.py --input_files file1.fastq.gz,file2.fastq.gz --input_labels sample1,sample2 --output_directory my_output_dir
@@ -105,8 +104,7 @@ apt-get install git
 Now we can clone the repository.
 
 <pre>
-git clone https://Jakob37@bitbucket.org/jakobbioinformatics/rasp_pipeline
-# git clone https://github.com/Jakob37/RASP
+git clone https://github.com/Jakob37/RASP.git
 </pre>
 
 #### Installing apt-get packages
@@ -165,8 +163,8 @@ RASP uses the following external software:
 * PyNAST
 * FastTree
 
-The software can either be set up directly within the "Programs" directory within the
-RASP directory, or they can be linked into this directory after setting up the program
+The software can either be set up directly in a directory named "Programs" within the
+RASP directory, or they can be linked into this directory after setting up the programs
 elsewhere. Here, the programs will be downloaded and set up in the home/bin directory.
 In the end, they are linked into the "Programs" directory, and the configuration file is
 adjusted accordingly.
@@ -224,13 +222,13 @@ make
 </pre>
 
 This will generate the required jar-files used for classification.
-This is a quite size-demanding step, and requires around 700 MB disk space.
+This is quite size-demanding, and requires around 700 MB disk space.
 
 The jar-file classifier.jar is later used in RASP.
 
 ##### Vsearch
 
-Vsearch is an open-source implementation of the famous Usearch suite.
+Vsearch is an open-source re-implementation of the famous Usearch suite.
 RASP uses Vsearch to perform reference based chimera checking of the OTUs.
 Its GitHub repository is found at:
 
@@ -257,7 +255,7 @@ Uclust binary is downloaded from http://www.drive5.com/uclust/downloads1_2_22q.h
 
 The Uclust binary is only allowed to be used together with PyNAST or QIIME.
 
-To run PyNAST, the uclust binary needs to be accessible through the PATH, and named simply 'uclust'.
+To run PyNAST, the Uclust binary needs to be accessible through the PATH, and named simply 'uclust'.
 
 <pre>
 cd ~/src
@@ -266,8 +264,6 @@ mkdir ~/bin
 cp uclustq1.2.22_i86linux64 ~/bin/uclust
 chmod +x ~/bin/uclust
 </pre>
-
-Next, we install pynast through pip2. This is one of the software which is using Python2.
 
 General installation instructions for PyNAST can be found here:
 
@@ -284,7 +280,7 @@ On this computer, the pynast binary ended up in the ~/.local/bin/pynast director
 This is the binary which will be used in this installation setup.
 
 There are other ways of installing PyNAST. Feel free to give them a go. This was the one
-which worked out for me.
+that worked out for me.
 
 ##### FastTree
 
@@ -300,11 +296,11 @@ wget http://www.microbesonline.org/fasttree/FastTree
 chmod +x FastTree
 </pre>
 
-Alright, that was all the software! Now, it is only the databases left.
+That was all the software. Now, it is only the databases left.
 
 ## Databases
 
-Currently RASP uses databases for the following steps:
+Currently RASP uses databases for the following processing steps:
 
 * Chimera checking
 * Building NAST alignment
@@ -312,7 +308,7 @@ Currently RASP uses databases for the following steps:
 
 #### Chimera checking database
 
-It is recommended to use a smaller high-quality database for chimera checking.
+It is recommended to use a small high-quality database for chimera checking.
 Here, we are using the latest version of RDP Classifier's training dataset.
 It can downloaded from the following page:
 
@@ -336,7 +332,7 @@ A PyNAST aligned database can be downloaded from the GreenGenes database at:
 http://greengenes.secondgenome.com/downloads/database/13_5
 
 The full PyNAST alignment is too large to work with. For now, we are using the
-GreenGenes gold aligment provided the Broad Institute.
+GreenGenes gold aligment provided by the Broad Institute.
 
 <pre>
 cd ~/databases
@@ -352,7 +348,7 @@ Now, we should have all the dependencies in place and all the databases availabl
 is to tell RASP where to look for all of these dependencies.
 
 RASP looks into the folder "Programs" for programs and the folder "Databases" for databases.
-Edit the file "settings.conf" in order to tell RASP exactly what to look for.
+Edit the file "settings.conf" to tell RASP exactly what to look for.
 
 Here, I will first create links from those directories to the retrieved software / databases,
 and then update the configuration file.

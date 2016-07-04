@@ -271,7 +271,7 @@ def get_chimera_checking_command(config, unchecked_fp, non_chimeric_fp):
 
     command = [config['programs']['vsearch'],
                '-uchime_ref', unchecked_fp,
-               '-db', config['databases']['uchime_16S_ref'],
+               '-db', config['databases']['vsearch_16S_ref'],
                '-uchimeout', str(non_chimeric_fp + '.OUTPUT'),
                '-nonchimeras', non_chimeric_fp]
 
