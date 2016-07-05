@@ -1,5 +1,20 @@
 ## RASP - Rapid Amplicon Sequence Pipeline
 
+### Table of Content
+
+* [Introduction](#introduction)
+* [Running RASP locally](#running-rasp-locally)
+* [Installation procedure](#installation-procedure)
+  * [Installing apt-get packages](#installing-apt-get-packages)
+  * [Installing Python packages](#installing-python-packages)
+  * [Databases](#databases)
+  * [Setting up RASP](#setting-up-rasp)
+  * [Testing installation](#testing-installation)
+* [Citing RASP](#citing-rasp)
+* [References](#references)
+
+### Introduction
+
 RASP is developed to aid and simplify the study of metagenomic 16S rRNA sequence data.
 There are powerful tools available for this type of analysis where two of the more notable are
 QIIME and Mothur. These tools often require significant effort to learn to use and to process the data with,
@@ -25,6 +40,10 @@ reads in gzipped FASTQ format.
 http://mbio-serv2.mbioekol.lu.se/RASP
 
 This is the recommended and easiest way of using RASP.
+
+RASP expects your reads to be without adapter- or primer-sequence. If you are working with paired-end
+reads it is recommended to first assembly them. A good tool for assemblying paired reads is PandaSeq:
+https://github.com/neufeld/pandaseq
 
 RASP can also be run locally, and when installed the full analysis can be executed locally by a single command.
 Be aware though that the installation procedure takes some effort due to the many dependencies of RASP.
@@ -171,7 +190,7 @@ adjusted accordingly.
 
 ##### Prinseq
 
-Prinseq is used to quality check the reads.
+Prinseq is used to exclude low quality reads and for trimming of low quality ends.
 Download prinseq-lite standalone version from its download page.
 For this guide, version 0.20.4 was used.
 
@@ -298,7 +317,7 @@ chmod +x FastTree
 
 That was all the software. Now, it is only the databases left.
 
-## Databases
+### Databases
 
 Currently RASP uses databases for the following processing steps:
 
@@ -342,7 +361,7 @@ unzip Greengenes.gold.alignment.zip
 
 This database contains 5181 sequences.
 
-## Setting up RASP
+### Setting up RASP
 
 Now, we should have all the dependencies in place and all the databases available. The final step
 is to tell RASP where to look for all of these dependencies.
@@ -405,7 +424,7 @@ pynast_16S              = rRNA16S.gold.NAST_ALIGNED.fasta
 uchime_16S_ref          = RDPClassifier_16S_trainsetNo15_rawtrainingdata
 </pre>
 
-## Testing RASP
+### Testing installation
 
 To evaluate the installation, run the test suite in the folder TestRun.
 
@@ -420,11 +439,11 @@ To find out further details, open the rasp.err log found in TestRun/output_files
 If you run into problems during your installation - Send me an email, and we will see whether we can figure it out.
 The most likely reason for a crash is that one of the dependencies of RASP isn't working properly.
 
-### Citing RASP
+## Citing RASP
 
 RASP is currently not published, but a manuscript is on its way.
 
-### References
+## References
 
 RASP couldn't possibly have been made possible without a number of software
 that have been made available for public use. When using RASP, you use the software
