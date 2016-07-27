@@ -1,6 +1,6 @@
-## RASP - Rapid Amplicon Sequence Pipeline
+# RASP - Rapid Amplicon Sequence Pipeline
 
-### Table of Content
+## Table of Content
 
 * [Introduction](#introduction)
 * [Running RASP locally](#running-rasp-locally)
@@ -13,7 +13,7 @@
 * [Citing RASP](#citing-rasp)
 * [References](#references)
 
-### Introduction
+## Introduction
 
 RASP is developed to aid and simplify the study of metagenomic 16S rRNA sequence data.
 There are powerful tools available for this type of analysis where two of the more notable are
