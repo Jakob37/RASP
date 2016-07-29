@@ -87,54 +87,57 @@ def write_output_readme(output_path):
 
     with open(output_path, 'w') as output_fh:
 
-        readme_text = """Metagenomic Pipeline output README
+        readme_text = """RASP (Rapid Amplicon Sequence Pipeline) output README
+
+This document describes the output files received from the RASP software.
+
+Main page and web implementation: http://mbio-serv2.mbioekol.lu.se/RASP/
+Source code: https://github.com/Jakob37/RASP
+Contact: jakob.willforss@hotmail.com
 
 ### Run information ###
 
-output_stats.txt
-Information about how many sequences/OTUs that remains after various steps in the pipeline.
+output_stats.tsv
+Information about how many sequences/OTUs that remained after different processing steps.
 
 time_plot.pdf
-A graphical overview over which parts of the pipeline that took the longest time to execute_test.
-Programs that execute_test for more than 1% of the total running time is included here.
+Visualization of processing times for internal parts of RASP.
+Programs taking more than 1% of the total running time is included in the plot.
 
 ### Data ###
 
 otus.fasta
-The sequences of the final OTUs remaining after filtering them based on
-the number of clustered sequeces in the OTU and based on how well the RDP
-classifier managed to classify them.
+Representative sequences for the final OTUs. The OTU headers are annotated with the most
+specific taxa for which RDP Classifier achieved a threshold level of certainty.
 
-otu_abundancies.txt
-The abundancies for the filtered OTUs. Contains the same OTUs as the "otus.fasta"-file.
+otu_abundancies.tsv
+Total abundancies for the final OTUs, i.e. the number of reads represented by the different OTUs.
+The IDs matches those found in otus.fasta.
 
-cluster_barplot_data.txt
-Contains information on how many unique OTUs that are present in different Phylum
-(and in the case of the Phylum Proteobacteria, in different Class).
-This data is used to create the barplot "taxa_plot.png"
+cluster_barplot_data.tsv
+The number of OTUs of certain taxa found in the different samples. This data is used to create
+the barplot "taxa_plot.png".
 
-abundance_barplot_data.txt
-Similiar to "cluster_barplot_data.txt", but includes information about each OTUs abundance.
-This means this is the number of encountered sequences in each Phyla/Class.
-This data is used to create the barplot "abund_taxa_plot.png"
+abundance_barplot_data.tsv
+Similar to "cluster_barplot_data.tsv", but counts representing the total number of reads
+contained in those OTUs.
 
 fasttree.tre
-The tree-file which is later used to create the tree visualization (seen in "ete_tree.svg").
-NOTE: ETE, the tree visualization program, replaces the OTU names with taxa-names.
+The tree-file visualized in "ete_tree.svg".
 
 ### Visualizations ###
 
 taxa_plot.png
-Displays the found taxas and how many unique OTUs that were found in each taxa.
-Is based on the data "cluster_barplot_data.txt"
+Proportion of OTUs classified as different taxa in the different samples.
+Based on the data "cluster_barplot_data.txt".
 
 abund_taxa_plot.png
-Displays the found taxas and the total number of sequences that were found in each taxa.
-Is based on the data "abundance_barplot_data.txt"
+Similar to "taxa_plot.png", but taking the abundance of the OTUs into account.
+Is based on the data "abundance_barplot_data.txt".
 
 ete_tree.svg
-A visualization of the tree found in "fasttree.tre".
-The visualization done using the Python module ETE2."""
+Visualization of the tree-file "fasttree.tre".
+"""
 
         output_fh.write(readme_text)
 
