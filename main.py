@@ -110,10 +110,10 @@ def main():
     run_pipeline_module('indices',          path_func, FILE_PATH_DICT, log_fp, log_table_fp, options_dict, config_obj)
     run_pipeline_module('visualize_data',   path_func, FILE_PATH_DICT, log_fp, log_table_fp, options_dict, config_obj)
 
-    output_stats = path_func('output') + 'output_stats.txt'
+    output_stats = path_func('output') + 'output_stats.tsv'
     util_functions.extract_run_information(FILE_PATH_DICT, output_stats)
 
-    input_stats = path_func('output') + 'input_stats.txt'
+    input_stats = path_func('output') + 'input_stats.tsv'
     util_functions.extract_input_information(FILE_PATH_DICT, input_stats)
 
     readme_path = path_func('output') + 'README'
@@ -317,12 +317,12 @@ def prepare_results_folder(results_folder_path):
     copy_list = list()
     copy_list.append((FILE_PATH_DICT['build_tree']['tree_file'], 'fasttree.tre'))
     copy_list.append((FILE_PATH_DICT['pynast']['annotated_otus'], 'otus.fasta'))
-    copy_list.append((FILE_PATH_DICT['pynast']['annotated_abundance'], 'otu_abundancies.txt'))
-    copy_list.append((FILE_PATH_DICT['visualize_data']['abundance_barplot_data'], 'abundance_barplot_data.txt'))
-    copy_list.append((FILE_PATH_DICT['visualize_data']['cluster_barplot_data'], 'cluster_barplot_data.txt'))
+    copy_list.append((FILE_PATH_DICT['pynast']['annotated_abundance'], 'otu_abundancies.tsv'))
+    copy_list.append((FILE_PATH_DICT['visualize_data']['abundance_barplot_data'], 'abundance_barplot_data.tsv'))
+    copy_list.append((FILE_PATH_DICT['visualize_data']['cluster_barplot_data'], 'cluster_barplot_data.tsv'))
     copy_list.append((FILE_PATH_DICT['indices']['rarefaction_curve'], 'rarefaction.png'))
     copy_list.append((FILE_PATH_DICT['indices']['chao1_curve'], 'chao1.png'))
-    copy_list.append((FILE_PATH_DICT['indices']['otu_mapping_table'], 'otu_mapping_table.txt'))
+    copy_list.append((FILE_PATH_DICT['indices']['otu_mapping_table'], 'otu_mapping_table.tsv'))
     copy_list.append((FILE_PATH_DICT['visualize_data']['time_plot'], 'time_plot.pdf'))
 
     copy_to_result(copy_list, results_folder_path)
