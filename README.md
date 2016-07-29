@@ -451,46 +451,46 @@ outlined below too.
 
 ##### Prinseq
 
-Schmieder R and Edwards R: Quality control and preprocessing of metagenomic datasets.
-Bioinformatics 2011, 27:863-864. [PMID: 21278185]
+Schmieder, R., and Edwards. R. (2011).
+*Quality control and preprocessing of metagenomic datasets*.
+Bioinformatics, 27:863-864. doi:10.1093/bioinformatics/btr026
 
 ##### CD-HIT
 
-Limin Fu, Beifang Niu, Zhengwei Zhu, Sitao Wu and Weizhong Li,
-CD-HIT: accelerated for clustering the next generation sequencing data.
-Bioinformatics, (2012), 28 (23): 3150-3152. doi: 10.1093/bioinformatics/bts565
+Fu, L., Niu, B., Zhu, Z., Wu, S. and Li, W. (2012).
+*CD-HIT: accelerated for clustering the next generation sequencing data*.
+Bioinformatics, 28 (23): 3150-3152. doi: 10.1093/bioinformatics/bts565
 
-"Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences",
-Weizhong Li & Adam Godzik Bioinformatics, (2006) 22:1658-9
+Li, W. and Godzik, A. (2006).
+*Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences*.
+Bioinformatics, 22:1658-9. doi: 10.1093/bioinformatics/btl158
 
 ##### FastTree
 
-Price, M.N., Dehal, P.S., and Arkin, A.P. (2009)
-FastTree: Computing Large Minimum-Evolution Trees with Profiles instead of a Distance Matrix.
-Molecular Biology and Evolution 26:1641-1650, doi:10.1093/molbev/msp077.
+Price, M.N., Dehal, P.S., and Arkin, A.P. (2009).
+*FastTree: Computing Large Minimum-Evolution Trees with Profiles instead of a Distance Matrix*.
+Molecular Biology and Evolution, 26:1641-1650, doi:10.1093/molbev/msp077
 
 ##### RDP Classifier
 
-Wang, Q, G. M. Garrity, J. M. Tiedje, and J. R. Cole. 2007.
-Naïve Bayesian Classifier for Rapid Assignment of rRNA Sequences into the New Bacterial Taxonomy.
-Appl Environ Microbiol. 73(16):5261-5267; doi: 10.1128/AEM.00062-07 [PMID: 17586664]
+Wang, Q, G. M. Garrity, J. M. Tiedje, and J. R. Cole. (2007).
+*Naïve Bayesian Classifier for Rapid Assignment of rRNA Sequences into the New Bacterial Taxonomy*.
+Appl Environ Microbiol. 73(16):5261-5267, doi: 10.1128/AEM.00062-07
 
 ##### PyNAST
 
-PyNAST: a flexible tool for aligning sequences to a template alignment.
-J. Gregory Caporaso, Kyle Bittinger, Frederic D. Bushman, Todd Z. DeSantis, Gary L. Andersen, and Rob Knight.
-January 15, 2010, DOI 10.1093/bioinformatics/btp636. Bioinformatics 26: 266-267.
+Caporaso, J. G., Bittinger, K., Bushman, F. D., DeSantis, T. Z., Andersen, G. L., & Knight, R. (2010).
+*PyNAST: a flexible tool for aligning sequences to a template alignment*.
+Bioinformatics, 26(2), 266–267. doi: 10.1093/bioinformatics/btp636
 
 ##### RAxML
 
 RAxML is only used if you change the default settings for the tree software.
 
-A. Stamatakis: "RAxML Version 8: A tool for Phylogenetic Analysis and Post-Analysis of Large Phylogenies".
-In Bioinformatics, 2014, open access.
+Stamatakis, A. (2014).
+*RAxML version 8: a tool for phylogenetic analysis and post-analysis of large phylogenies*.
+Bioinformatics, 30(9), 1312–1313. doi: 10.1093/bioinformatics/btu033
 
-##### GreenGenes
+##### Vsearch
 
-DeSantis, T. Z., P. Hugenholtz, N. Larsen, M. Rojas, E. L. Brodie, K. Keller, T. Huber, D. Dalevi, P. Hu,
-and G. L. Andersen. 2006.
-Greengenes, a Chimera-Checked 16S rRNA Gene Database and Workbench Compatible with ARB.
-Appl Environ Microbiol 72:5069-72.
+There is currently no publication, but they recommend referring to their GitHub repository: https://github.com/torognes/vsearch
