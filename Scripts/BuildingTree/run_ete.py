@@ -3,7 +3,7 @@
 """
 RASP: Rapid Amplicon Sequence Pipeline
 
-Copyright (C) 2016, Jakob Willforss and Björn Canbäck
+Copyright (C) 2016, Jakob Willforss and Bjoern Canbaeck
 All rights reserved.
 
 This file is part of RASP.
