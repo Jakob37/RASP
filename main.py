@@ -110,10 +110,10 @@ def main():
     run_pipeline_module('indices',          path_func, FILE_PATH_DICT, log_fp, log_table_fp, options_dict, config_obj)
     run_pipeline_module('visualize_data',   path_func, FILE_PATH_DICT, log_fp, log_table_fp, options_dict, config_obj)
 
-    output_stats = path_func('output') + 'output_stats.tsv'
+    output_stats = path_func('output') + 'output_stats.txt'
     util_functions.extract_run_information(FILE_PATH_DICT, output_stats)
 
-    input_stats = path_func('output') + 'input_stats.tsv'
+    input_stats = path_func('output') + 'input_stats.txt'
     util_functions.extract_input_information(FILE_PATH_DICT, input_stats)
 
     readme_path = path_func('output') + 'README'

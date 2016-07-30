@@ -97,7 +97,7 @@ Contact: jakob.willforss@hotmail.com
 
 ### Run information ###
 
-output_stats.tsv
+output_stats.txt
 Information about how many sequences/OTUs that remained after different processing steps.
 
 time_plot.pdf
