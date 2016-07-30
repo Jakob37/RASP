@@ -72,7 +72,7 @@ def get_rdp_command(config, input_fp, fixed_rank_fp, significant_taxa_fp, signif
 
     """Run the RDP classification program"""
 
-    description = 'rdp classifier'
+    description = 'RDP Classifier'
     short = 'RDP'
 
     if chosen_database == '18S':
@@ -97,7 +97,7 @@ def get_create_color_tables_command(config, fixed_rdp_output_fp, otu_color_taxa_
 
     """Produces color tables for color strap and color definitions"""
 
-    description = 'create color tables'
+    description = 'Create color-tab'
     short = 'cct'
 
     command = [config['scripts']['colors_from_phyla'],

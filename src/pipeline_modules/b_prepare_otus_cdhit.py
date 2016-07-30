@@ -132,7 +132,7 @@ def get_fastq_to_fasta_command(config, fastq_fp, fasta_fp):
     This format is needed in the following steps
     """
 
-    description = 'Convert fq to fa'
+    description = 'Fq to Fa'
     short = 'FQA'
 
     command = [config['scripts']['fasta_to_fastq'],
@@ -152,7 +152,7 @@ def get_derep_command(config, raw_reads_fp, dereplicated_fp):
     Outputs fasta-file with dereplication counts
     """
 
-    description = 'dereplicate reads'
+    description = 'Dereplicate'
     short = 'dr'
 
     command = [config['programs']['dereplicate'], raw_reads_fp, dereplicated_fp]
@@ -166,7 +166,7 @@ def get_script_dereplicator_command(config, raw_reads_fp, dereplicated_fp, mappi
     Home-made dereplication script
     """
 
-    description = 'dereplicate reads'
+    description = 'Dereplicate script'
     short = 'dr'
 
     # command = [config['programs']['dereplicate'], raw_reads_fp, dereplicated_fp]
@@ -186,7 +186,7 @@ def get_label_fasta_header_command(config, raw_reads_fp, labelled_fp):
     Is used to add ';size=1;' if the derep command isn't used
     """
 
-    description = 'label reads'
+    description = 'Label reads'
     short = 'lr'
 
     label = ';size=1;'
@@ -231,7 +231,7 @@ def get_generate_otu_names_command(config, raw_otus, otu_name_map):
 
     """Generates mapping table between old and newly generated OTU names"""
 
-    description = 'Generate OTU names'
+    description = 'Generate otu names'
     short = 'GOn'
 
     command = [config['scripts']['generate_otu_names'],
@@ -248,7 +248,7 @@ def get_cdhit_parser_command(config, input_mapping_matrix_fp, output_mapping_tab
     as an abundancy matrix
     """
 
-    description = 'extract OTU table'
+    description = 'Extract otu table'
     short = 'eOt'
 
     command = [config['scripts']['cdhit_output_parser'],
@@ -266,7 +266,7 @@ def get_filter_otu_command(config, complete_otu_fp, otu_abundancy_fp, output_fp,
     Filters the otus based on mapped read count
     """
 
-    description = 'abund. filtering'
+    description = 'Abund. filtering'
     short = 'af'
 
     command = [config['scripts']['filter_otus'],
@@ -286,7 +286,7 @@ def get_chimera_checking_command(config, unchecked_fp, non_chimeric_fp):
     Identifies chimeric reads, and outputs non-chimeric reads to target file path
     """
 
-    description = 'chim. checking'
+    description = 'Chim. checking'
     short = 'cc'
 
     command = [config['programs']['vsearch'],
@@ -305,7 +305,7 @@ def get_rename_otus_command(config, input_otus, input_table, renamed_fasta, rena
     Outputs then as 'output.fasta' and 'output.table'
     """
 
-    description = 'rename OTUs'
+    description = 'Rename otus'
     short = 'rO'
 
     command = [config['scripts']['rename_otus'],

@@ -61,7 +61,6 @@ class CreateBarplotsWrapper(program_module.ProgramWrapper):
 
         file_path_dict[self._name]['abundance_barplot_data'] = tax_abund_table
         file_path_dict[self._name]['cluster_barplot_data'] = tax_count_table
-        # file_path_dict[self._name]['otu_mapping_table'] = otu_mapping_table_fp
         file_path_dict[self._name]['time_plot'] = time_visualization_fp
 
 
@@ -69,7 +68,7 @@ def get_create_barplot_data_command(config, taxa_otu_rank, otu_sample_table, tax
 
     """Extracts data from the otu-taxa-table and outputs taxa barplot data"""
 
-    description = 'create barplot data'
+    description = 'Create bar-data'
     short = 'cbd'
 
     command = [config['scripts']['create_barplot_table'],
@@ -86,7 +85,7 @@ def get_taxa_barplot_command(config, tax_count_table_fp, matlibplot_out_fp, taxa
 
     """Create a taxa barplot using matplotlib"""
 
-    description = 'taxa barplot'
+    description = 'Taxa-barplot'
     short = 'tb'
 
     command = [config['scripts']['make_barplot'],
@@ -106,7 +105,7 @@ def get_timeplot_command(config, log_table_fp, timeplot_fp):
 
     """Create a taxa barplot using matplotlib"""
 
-    description = 'timeplot'
+    description = 'Timeplot'
     short = 'tp'
 
     command = [config['scripts']['time_script'],

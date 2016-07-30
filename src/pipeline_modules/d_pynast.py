@@ -86,7 +86,7 @@ def get_filter_bad_taxa_command(config, raw_otus, abundancy_matrix, otu_taxa_tab
     Filtering effects both OTU fasta file, and abundancy table
     """
 
-    description = 'filter taxa'
+    description = 'Filter taxa'
     short = 'ft'
 
     command = [config['scripts']['filter_poor_taxa'],
@@ -105,7 +105,7 @@ def get_annotate_otus_command(config, raw_otus, raw_abundance, annotated_otus, a
     Annotates an OTU-fasta file and an OTU-abundancy matrix
     """
 
-    description = 'annotate otu'
+    description = 'Annotate otu'
     short = 'ao'
 
     command = [config['scripts']['annotate_otu'],
@@ -156,10 +156,6 @@ def get_convert_to_phylip_command(config, pynast_alignment_fasta, pynast_alignme
     command = [config['scripts']['fasta_to_phylip'],
                '--input_fasta', pynast_alignment_fasta,
                '--output_phylip', pynast_alignment_phylip]
-
-    # command = [config['programs']['fasta2phylip'],
-    #            pynast_alignment_fasta,
-    #            pynast_alignment_phylip]
 
     return program_module.ProgramCommand(description, short, command)
 

@@ -51,7 +51,7 @@ def get_decompression_command(config_file, compressed_input_fp, decompressed_out
 
     """Runs the decompression script, targetting .gz files only"""
 
-    description = 'Decompression'
+    description = 'decompress'
     short = 'dc'
 
     command = [config_file['scripts']['decompression_script'],
@@ -66,7 +66,7 @@ def get_merge_command(config_file, input_fastq_files_fp, merged_output_fp, label
 
     """Runs the decompression script, targetting .gz files only"""
 
-    description = 'Merge'
+    description = 'merge'
     short = 'mr'
 
     print('DEBUG input labels {}'.format(labels))

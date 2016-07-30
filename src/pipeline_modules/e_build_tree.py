@@ -100,7 +100,7 @@ def get_ete_command(config, input_tree_fp, output_tree_pic_fp,
     """Uses the Python ETE module to create and render a tree"""
 
     description = 'ETE'
-    short = 'ETE'
+    short = 'ete'
 
     command = ['xvfb-run', config['scripts']['ete'],
                '--input', input_tree_fp,

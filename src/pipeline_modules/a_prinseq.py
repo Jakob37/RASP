@@ -37,7 +37,6 @@ class PrinseqWrapper(program_module.ProgramWrapper):
 
     def setup_commands(self, file_path_dict, option_dict=None):
 
-        # input_fp = file_path_dict['input']['initial_reads']
         input_fp = file_path_dict['preprocessing']['decompressed_input']
 
         good_output_fp = self.output_dir + 'output_good'
