@@ -488,14 +488,6 @@ Caporaso, J. G., Bittinger, K., Bushman, F. D., DeSantis, T. Z., Andersen, G. L.
 PyNAST: a flexible tool for aligning sequences to a template alignment.
 *Bioinformatics*, **26**, 266–267. doi: 10.1093/bioinformatics/btp636
 
-##### Uclust
-
-Used internally by PyNAST.
-
-Edgar, R.C. (2010). 
-Search and clustering orders of magnitude faster than BLAST, 
-*Bioinformatics*, **26**, 2460-2461. doi: 10.1093/bioinformatics/btq461
-
 ##### RAxML
 
 RAxML is only used if you change the default settings for the tree software.
@@ -512,13 +504,13 @@ GitHub repository: https://github.com/torognes/vsearch
 
 #### RDP databases
 
-Cole,J.R. *et al*. (2014). 
+Cole, J.R. *et al*. (2014). 
 Ribosomal Database Project: data and tools for high throughput rRNA analysis.
 *Nucl. Acids Res.*, **42**, 633-642. doi: 10.1093/nar/gkt1244
 
 #### GreenGenes database
 
-DeSantis,T.Z. \textit{et~al}. (2006). 
+DeSantis, T.Z. *et al*. (2006). 
 Greengenes, a Chimera-Checked 16S rRNA Gene Database and Workbench Compatible with ARB.
 *Appl. Environ. Microbiol.*, **72**, 5069-5072. doi: 10.1128/AEM.03006-05
 
