@@ -41,8 +41,8 @@ http://mbio-serv2.mbioekol.lu.se/RASP
 
 This is the recommended and easiest way of using RASP.
 
-RASP expects your reads to be without adapter- or primer-sequence. If you are working with paired-end
-reads it is recommended to first assembly them. A good tool for assemblying paired reads is PandaSeq:
+RASP expects your reads to be without barcode or primer sequences. If you are working with paired-end
+reads it is recommended to merge them before analysis. A good tool for merging paired-end reads is PandaSeq:
 https://github.com/neufeld/pandaseq
 
 RASP can also be run locally, and when installed the full analysis can be executed locally by a single command.
@@ -227,7 +227,7 @@ The binary named 'cd-hit-est' is later used in RASP.
 ##### RDP Classifier
 
 RDP Classifier is used for taxonomic assignment, and is out of the box trained on
-16S rRNA sequence. Its GitHub repository is found at:
+16S rRNA sequences. Its GitHub repository is found at:
 
 https://github.com/rdpstaff/RDPTools.git
 
@@ -247,7 +247,7 @@ The jar-file classifier.jar is later used in RASP.
 
 ##### Vsearch
 
-Vsearch is an open-source re-implementation of the famous Usearch suite.
+Vsearch is an open-source re-implementation of the well known Usearch suite.
 RASP uses Vsearch to perform reference based chimera checking of the OTUs.
 Its GitHub repository is found at:
 
@@ -325,6 +325,9 @@ Currently RASP uses databases for the following processing steps:
 * Building NAST alignment
 * Taxonomic classification
 
+Both RDP and GreenGenes provide their databases under a Creative Commons
+Attribution-ShareAlike 3.0 license (https://creativecommons.org/licenses/by-sa/3.0/).
+
 #### Chimera checking database
 
 It is recommended to use a small high-quality database for chimera checking.
@@ -351,7 +354,7 @@ A PyNAST aligned database can be downloaded from the GreenGenes database at:
 http://greengenes.secondgenome.com/downloads/database/13_5
 
 The full PyNAST alignment is too large to work with. For now, we are using the
-GreenGenes gold aligment provided by the Broad Institute.
+GreenGenes alignment of a RDP gold subset.
 
 <pre>
 cd ~/databases
@@ -454,44 +457,52 @@ outlined below too.
 ##### Prinseq
 
 Schmieder, R., and Edwards. R. (2011).
-*Quality control and preprocessing of metagenomic datasets*.
-Bioinformatics, 27:863-864. doi:10.1093/bioinformatics/btr026
+Quality control and preprocessing of metagenomic datasets.
+*Bioinformatics*, **27**, 863-864. doi:10.1093/bioinformatics/btr026
 
 ##### CD-HIT
 
 Fu, L., Niu, B., Zhu, Z., Wu, S. and Li, W. (2012).
-*CD-HIT: accelerated for clustering the next generation sequencing data*.
-Bioinformatics, 28 (23): 3150-3152. doi: 10.1093/bioinformatics/bts565
+CD-HIT: accelerated for clustering the next generation sequencing data.
+*Bioinformatics*, **28**, 3150-3152. doi: 10.1093/bioinformatics/bts565
 
 Li, W. and Godzik, A. (2006).
-*Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences*.
-Bioinformatics, 22:1658-9. doi: 10.1093/bioinformatics/btl158
+Cd-hit: a fast program for clustering and comparing large sets of protein or nucleotide sequences.
+*Bioinformatics*, **22**, 1658-1659. doi: 10.1093/bioinformatics/btl158
 
 ##### FastTree
 
 Price, M.N., Dehal, P.S., and Arkin, A.P. (2009).
-*FastTree: Computing Large Minimum-Evolution Trees with Profiles instead of a Distance Matrix*.
-Molecular Biology and Evolution, 26:1641-1650, doi:10.1093/molbev/msp077
+FastTree: Computing Large Minimum-Evolution Trees with Profiles instead of a Distance Matrix.
+*Molecular Biology and Evolution*, **26**, 1641-1650. doi:10.1093/molbev/msp077
 
 ##### RDP Classifier
 
 Wang, Q, G. M. Garrity, J. M. Tiedje, and J. R. Cole. (2007).
-*Naïve Bayesian Classifier for Rapid Assignment of rRNA Sequences into the New Bacterial Taxonomy*.
-Appl Environ Microbiol. 73(16):5261-5267, doi: 10.1128/AEM.00062-07
+Naïve Bayesian Classifier for Rapid Assignment of rRNA Sequences into the New Bacterial Taxonomy.
+*Appl. Environ. Microbiol.*, **73**, 5261-5267, doi: 10.1128/AEM.00062-07
 
 ##### PyNAST
 
 Caporaso, J. G., Bittinger, K., Bushman, F. D., DeSantis, T. Z., Andersen, G. L., & Knight, R. (2010).
-*PyNAST: a flexible tool for aligning sequences to a template alignment*.
-Bioinformatics, 26(2), 266–267. doi: 10.1093/bioinformatics/btp636
+PyNAST: a flexible tool for aligning sequences to a template alignment.
+*Bioinformatics*, **26**, 266–267. doi: 10.1093/bioinformatics/btp636
+
+##### Uclust
+
+Used internally by PyNAST.
+
+Edgar, R.C. (2010). 
+Search and clustering orders of magnitude faster than BLAST, 
+*Bioinformatics*, **26**, 2460-2461. doi: 10.1093/bioinformatics/btq461
 
 ##### RAxML
 
 RAxML is only used if you change the default settings for the tree software.
 
 Stamatakis, A. (2014).
-*RAxML version 8: a tool for phylogenetic analysis and post-analysis of large phylogenies*.
-Bioinformatics, 30(9), 1312–1313. doi: 10.1093/bioinformatics/btu033
+RAxML version 8: a tool for phylogenetic analysis and post-analysis of large phylogenies.
+*Bioinformatics*, **30**, 1312–1313. doi: 10.1093/bioinformatics/btu033
 
 ##### Vsearch
 
@@ -505,17 +516,17 @@ The following Python packages play a central role in RASP's visualizations and c
 
 Matplotlib is used to make the majority of RASP's visualizations.
 
-Hunter, J. D. (2007).
-*Matplotlib: A 2D Graphics Environment*
-Science & Engineering, Vol. 9, No. 3. pp. 90-95. doi: 10.1109/MCSE.2007.55
+Hunter, J. D. (2007). 
+Matplotlib: A 2D Graphics Environment
+*Science & Engineering*, **9**, 90-95. doi: 10.1109/MCSE.2007.55
 
 ##### ETE toolkit
 
 The ETE toolkit is used to visualize the phylogenetic tree generated by RASP.
 
-Huerta-Cepas, J. Dopazo, J. and Gabaldon, Toni. (2010).
-*ETE: a python Environment for Tree Exploration.*
-BMC Bioinformatics, 11:24. doi: 10.1186/1471-2105-11-24
+Huerta-Cepas, J. Dopazo, J. and Gabaldon, Toni. (2010). 
+ETE: a python Environment for Tree Exploration.
+*BMC Bioinformatics*, **11**. doi: 10.1186/1471-2105-11-24
 
 ##### Sci-kit bio
 
