@@ -118,23 +118,23 @@ Total abundances for the final OTUs, i.e. the number of reads represented by the
 those found in otus.fasta
 
 otu_barplot_data.tsv
-The number of OTUs of certain taxa found in the different samples. This data is used to create the barplot taxa_plot.png
+The number of OTUs of certain taxa found in the different samples. This data is used to create the barplot otu_barplot.png
 
 abundance_barplot_data.tsv
 Similar to otu_barplot_data.tsv, using read counts instead of OTU counts.
 
 fasttree.tre
-The tree-file visualized in ete_tree.svg
+The tree-file visualized in fasttree.svg
 
 ### Visualizations ###
 
-taxa_plot.png
+otu_barplot.png
 Proportion of OTUs classified as different taxa in the different samples. Based on the data otu_barplot_data.tsv
 
-abund_taxa_plot.png
-Similar to taxa_plot.png, but using read counts instead of OTU counts. Is based on the data abundance_barplot_data.tsv
+abundance_barplot.png
+Similar to otu_barplot.png, but using read counts instead of OTU counts. Is based on the data abundance_barplot_data.tsv
 
-ete_tree.svg
+fasttree.svg
 Visualization of the tree-file fasttree.tre
 """
 

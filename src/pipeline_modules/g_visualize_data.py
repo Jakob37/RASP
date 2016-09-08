@@ -41,14 +41,14 @@ class CreateBarplotsWrapper(program_module.ProgramWrapper):
         taxa_color_table = file_path_dict['rdp_classifier']['taxa_color_table']
 
         # Create taxa barplot (clusters)
-        matplotlib_out_fp = self.path_generator('output') + 'taxa_plot'
+        matplotlib_out_fp = self.path_generator('output') + 'otu_barplot'
         self.add_command_entry(get_taxa_barplot_command(self.config_file, tax_count_table, matplotlib_out_fp,
                                                         taxa_color_table, plot_relative_abundance=True,
                                                         title='OTU counts (Phylum/Class)', 
                                                         ylabel='OTU count (fraction)'))
 
         # Create taxa barplot (abundance)
-        matplotlib_out_abund = self.path_generator('output') + 'abund_taxa_plot'
+        matplotlib_out_abund = self.path_generator('output') + 'abundance_barplot'
         self.add_command_entry(get_taxa_barplot_command(self.config_file, tax_abund_table, matplotlib_out_abund,
                                                         taxa_color_table, plot_relative_abundance=True,
                                                         title='Read counts (Phylum/Class)',
