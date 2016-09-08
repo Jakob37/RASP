@@ -97,46 +97,45 @@ Contact: jakob.willforss@hotmail.com
 
 ### Run information ###
 
+input_stats.txt
+The number of sequences present in each of the uploaded samples.
+
 output_stats.txt
 Information about how many sequences/OTUs that remained after different processing steps.
 
 time_plot.pdf
-Visualization of processing times for internal parts of RASP.
-Programs taking more than 1% of the total running time is included in the plot.
+Visualization of processing times for internal parts of RASP. Programs taking more than 1% of the total
+running time are included in the plot.
 
 ### Data ###
 
 otus.fasta
-Representative sequences for the final OTUs. The OTU headers are annotated with the most
-specific taxa for which RDP Classifier achieved a threshold level of certainty.
+Representative sequences for the final OTUs. The OTU fasta headers are annotated with the most specific taxa for
+which RDP Classifier achieved a threshold level of certainty.
 
 otu_abundancies.tsv
-Total abundancies for the final OTUs, i.e. the number of reads represented by the different OTUs.
-The IDs matches those found in otus.fasta.
+Total abundances for the final OTUs, i.e. the number of reads represented by the different OTUs. The IDs match
+those found in otus.fasta
 
 otu_barplot_data.tsv
-The number of OTUs of certain taxa found in the different samples. This data is used to create
-the barplot "taxa_plot.png".
+The number of OTUs of certain taxa found in the different samples. This data is used to create the barplot taxa_plot.png
 
 abundance_barplot_data.tsv
-Similar to "otu_barplot_data.tsv", but counts representing the total number of reads
-contained in those OTUs.
+Similar to otu_barplot_data.tsv, using read counts instead of OTU counts.
 
 fasttree.tre
-The tree-file visualized in "ete_tree.svg".
+The tree-file visualized in ete_tree.svg
 
 ### Visualizations ###
 
 taxa_plot.png
-Proportion of OTUs classified as different taxa in the different samples.
-Based on the data "otu_barplot_data.txt".
+Proportion of OTUs classified as different taxa in the different samples. Based on the data otu_barplot_data.tsv
 
 abund_taxa_plot.png
-Similar to "taxa_plot.png", but taking the abundance of the OTUs into account.
-Is based on the data "abundance_barplot_data.txt".
+Similar to taxa_plot.png, but using read counts instead of OTU counts. Is based on the data abundance_barplot_data.tsv
 
 ete_tree.svg
-Visualization of the tree-file "fasttree.tre".
+Visualization of the tree-file fasttree.tre
 """
 
         output_fh.write(readme_text)
