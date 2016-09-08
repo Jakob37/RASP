@@ -27,7 +27,7 @@ def extract_input_information(file_path_dict, output_path, delim=','):
 
     """
     Reads the input strings with filepaths and labels and outputs
-    linecounts for each file to target path
+    line-counts for each file to target path
     """
 
     compressed_input_fp = file_path_dict['input']['multiple_read_files']
@@ -43,8 +43,8 @@ def extract_input_information(file_path_dict, output_path, delim=','):
         linecounts.append(num_lines)
 
     with open(output_path, 'w') as output_fh:
-        output_fh.write('Label:Number of sequences\n')
-        for pos in range(0, len(labels)):
+        output_fh.write('Label:Initial number of sequences\n')
+        for pos in range(len(labels)):
             output_fh.write('{}:{}\n'.format(labels[pos], int(linecounts[pos] / 4)))
 
 
@@ -114,12 +114,12 @@ otu_abundancies.tsv
 Total abundancies for the final OTUs, i.e. the number of reads represented by the different OTUs.
 The IDs matches those found in otus.fasta.
 
-cluster_barplot_data.tsv
+otu_barplot_data.tsv
 The number of OTUs of certain taxa found in the different samples. This data is used to create
 the barplot "taxa_plot.png".
 
 abundance_barplot_data.tsv
-Similar to "cluster_barplot_data.tsv", but counts representing the total number of reads
+Similar to "otu_barplot_data.tsv", but counts representing the total number of reads
 contained in those OTUs.
 
 fasttree.tre
@@ -129,7 +129,7 @@ The tree-file visualized in "ete_tree.svg".
 
 taxa_plot.png
 Proportion of OTUs classified as different taxa in the different samples.
-Based on the data "cluster_barplot_data.txt".
+Based on the data "otu_barplot_data.txt".
 
 abund_taxa_plot.png
 Similar to "taxa_plot.png", but taking the abundance of the OTUs into account.

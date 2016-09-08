@@ -319,7 +319,7 @@ def prepare_results_folder(results_folder_path):
     copy_list.append((FILE_PATH_DICT['pynast']['annotated_otus'], 'otus.fasta'))
     copy_list.append((FILE_PATH_DICT['pynast']['annotated_abundance'], 'otu_abundancies.tsv'))
     copy_list.append((FILE_PATH_DICT['visualize_data']['abundance_barplot_data'], 'abundance_barplot_data.tsv'))
-    copy_list.append((FILE_PATH_DICT['visualize_data']['cluster_barplot_data'], 'cluster_barplot_data.tsv'))
+    copy_list.append((FILE_PATH_DICT['visualize_data']['otu_barplot_data'], 'otu_barplot_data.tsv'))
     copy_list.append((FILE_PATH_DICT['indices']['rarefaction_curve'], 'rarefaction.png'))
     copy_list.append((FILE_PATH_DICT['indices']['chao1_curve'], 'chao1.png'))
     copy_list.append((FILE_PATH_DICT['indices']['otu_mapping_table'], 'otu_mapping_table.tsv'))

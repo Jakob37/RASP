@@ -60,7 +60,7 @@ class CreateBarplotsWrapper(program_module.ProgramWrapper):
         self.add_command_entry(get_timeplot_command(self.config_file, time_data_fp, time_visualization_fp))
 
         file_path_dict[self._name]['abundance_barplot_data'] = tax_abund_table
-        file_path_dict[self._name]['cluster_barplot_data'] = tax_count_table
+        file_path_dict[self._name]['otu_barplot_data'] = tax_count_table
         file_path_dict[self._name]['time_plot'] = time_visualization_fp
 
 
