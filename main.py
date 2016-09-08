@@ -139,16 +139,26 @@ def parse_arguments():
                         required=True)
 
     parser.add_argument('--otu_filter_threshold',
-                        help='Specifies the minimum count in OTUs to not be filtered out',
+                        help='OTUs with lower counts are removed. Artifacts are more common in low-count clusters '
+                             'especially for singletons (clusters consisting of a single read)',
                         type=int, default=5)
     parser.add_argument('--otu_cluster_identity',
-                        help='Specifies how similar sequences needs to be in order to be clustered',
+                        help='Reads with higher or equal similarity to this threshold are clustered into an OTU '
+                             '0.97 is commonly used as a proxy for prokaryotic species '
+                             'Must have a value between 0.8 and 1.0 (inclusive)',
                         type=float, default=0.97)
     parser.add_argument('--pynast_identity',
-                        help='Specifies alignment identity used by PyNAST',
+                        help='Threshold for the OTU sequence alignment quality used for inclusion of the '
+                             'OTU in the phylogenetic tree '
+                             'Can be used to prevent outliers, but will if set to non-zero lead to that some OTUs '
+                             'present in the other analyses will be missing in the tree '
+                             'Must have a value between 0.0 and 1.0 (inclusive)',
                         type=int, default=0)
     parser.add_argument('--rdp_identity',
-                        help='RDP classification threshold',
+                        help='Threshold for the RDP Classifier certainty when assigning a taxon '
+                             'If below threshold the OTU sequence is discarded'
+                             '0.8 is commonly used'
+                             'Must have a value between 0.5 and 1.0 (inclusive)',
                         type=float, default=0.8)
     parser.add_argument('--rdp_database',
                         help='RDP classification database (currently only 16S implemented)',
@@ -157,10 +167,12 @@ def parse_arguments():
                         help='RDP classification depth',
                         choices=['phylum', 'class'], default='phylum')
     parser.add_argument('--tree_software',
-                        help='Tree building software',
+                        help='Software used for tree generation '
+                             'RAxML can be slightly more accurate but results in drastically slower analysis',
                         choices=['fasttree', 'raxml'], default='fasttree')
     parser.add_argument('--chimera_checking',
-                        help='How chimera checking is performed',
+                        help='Filters sequences assigned as chimeric by reference based chimera checking '
+                             'performed by Vsearch',
                         choices=['none', 'vsearch'], default='vsearch')
 
     args = parser.parse_args()

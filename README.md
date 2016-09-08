@@ -84,24 +84,38 @@ optional arguments:
   --output_directory OUTPUT_DIRECTORY
                         The output directory
   --otu_filter_threshold OTU_FILTER_THRESHOLD
-                        Specifies the minimum count in OTUs to not be filtered
-                        out
+                        OTUs with lower counts are removed. Artifacts are more
+                        common in low-count clusters especially for singletons
+                        (clusters consisting of a single read)
   --otu_cluster_identity OTU_CLUSTER_IDENTITY
-                        Specifies how similar sequences needs to be in order
-                        to be clustered
+                        Reads with higher or equal similarity to this
+                        threshold are clustered into an OTU 0.97 is commonly
+                        used as a proxy for prokaryotic species Must have a
+                        value between 0.8 and 1.0 (inclusive)
   --pynast_identity PYNAST_IDENTITY
-                        Specifies alignment identity used by PyNAST
+                        Threshold for the OTU sequence alignment quality used
+                        for inclusion of the OTU in the phylogenetic tree Can
+                        be used to prevent outliers, but will if set to non-
+                        zero lead to that some OTUs present in the other
+                        analyses will be missing in the tree Must have a value
+                        between 0.0 and 1.0 (inclusive)
   --rdp_identity RDP_IDENTITY
-                        RDP classification threshold
+                        Threshold for the RDP Classifier certainty when
+                        assigning a taxon If below threshold the OTU sequence
+                        is discarded0.8 is commonly usedMust have a value
+                        between 0.5 and 1.0 (inclusive)
   --rdp_database RDP_DATABASE
                         RDP classification database (currently only 16S
                         implemented)
   --rdp_depth {phylum,class}
                         RDP classification depth
   --tree_software {fasttree,raxml}
-                        Tree building software
+                        Software used for tree generation RAxML can be
+                        slightly more accurate but results in drastically
+                        slower analysis
   --chimera_checking {none,vsearch}
-                        How chimera checking is performed
+                        Filters sequences assigned as chimeric by reference
+                        based chimera checking performed by Vsearch
 </pre>
 
 ## Installation procedure
