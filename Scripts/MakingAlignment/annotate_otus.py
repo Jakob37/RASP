@@ -32,9 +32,6 @@ Takes an OTU-fasta-file, and OTU-abundancy matrix and a taxa-file
 Outputs corresponding fasta-file and abundancy matrix with added taxonomic information
 """
 
-# FILTER_DEPTH_THRESHOLD = 3
-# OTU_PATTERN = re.compile(r'OTU\d+')
-
 
 def main():
 
@@ -42,8 +39,13 @@ def main():
 
     otu_taxa_dict = get_otu_taxa_dict(args.input_taxa)
 
+    otu_annot_string_dict = None
+    if args.fixed_rank_annotation:
+        otu_annot_string_dict = get_fix_rank_annot_string_dict(args.fixed_rank_annotation)
+
     annotate_otu_fasta(args.input_fasta, args.annotated_fasta, otu_taxa_dict)
-    annotate_otu_abund_matrix(args.input_abundancy, args.annotated_abundancy, otu_taxa_dict)
+    annotate_otu_abund_matrix(args.input_abundancy, args.annotated_abundancy, otu_taxa_dict,
+                              fixed_rank_annot_dict=otu_annot_string_dict)
 
 
 def parse_arguments():
@@ -59,6 +61,10 @@ def parse_arguments():
     parser.add_argument('-F', '--annotated_fasta', required=True)
     parser.add_argument('-A', '--annotated_abundancy', required=True)
 
+    parser.add_argument('--fixed_rank_annotation',
+                        help='Allows for full annotation string in annotation matrix. '
+                             'The required file is traditionally named fixedRank.txt in RASP')
+
     args = parser.parse_args()
     return args
 
@@ -73,6 +79,26 @@ def get_otu_taxa_dict(taxa_fp):
             otu, _, _, taxa, _, _, _ = line.split('\t')
             otu_taxa_dict[otu] = taxa
     return otu_taxa_dict
+
+
+def get_fix_rank_annot_string_dict(fix_rank_annot_fp):
+
+    """Retrieve dict linking OTU ID to RDP fix rank annotation string"""
+
+    otu_annot_string_dict = dict()
+
+    with open(fix_rank_annot_fp) as in_fh:
+        for line in in_fh:
+            line = line.rstrip()
+
+            # fields = line.split('\t')
+            fields = re.split(r'\t+', line)
+
+            otu_id = fields[0]
+            annot_string = ';'.join(fields[1:])
+            otu_annot_string_dict[otu_id] = annot_string
+
+    return otu_annot_string_dict
 
 
 def annotate_otu_fasta(raw_fasta_fp, annotated_fasta_fp, otu_taxa_dict):
@@ -96,7 +122,7 @@ def annotate_otu_fasta(raw_fasta_fp, annotated_fasta_fp, otu_taxa_dict):
                 print(line, file=output_fh)
 
 
-def annotate_otu_abund_matrix(raw_abund_fp, annotated_abund_fp, otu_taxa_dict):
+def annotate_otu_abund_matrix(raw_abund_fp, annotated_abund_fp, otu_taxa_dict, fixed_rank_annot_dict=None):
 
     """
     Reads a raw OTU-abundance file and outputs another file annotated
@@ -106,12 +132,16 @@ def annotate_otu_abund_matrix(raw_abund_fp, annotated_abund_fp, otu_taxa_dict):
     with open(raw_abund_fp, 'r') as input_fh, open(annotated_abund_fp, 'w') as output_fh:
 
         for line in input_fh:
-
             line = line.rstrip()
 
             otu, count = line.split('\t')
             taxa = otu_taxa_dict[otu]
-            print('{}\t{}\t{}'.format(otu, count, taxa), file=output_fh)
+
+            if not fixed_rank_annot_dict:
+                print('{}\t{}\t{}'.format(otu, count, taxa), file=output_fh)
+            else:
+                fixed_rank_string = fixed_rank_annot_dict[otu]
+                print('{}\t{}\t{}\t{}'.format(otu, count, taxa, fixed_rank_string), file=output_fh)
 
 
 if __name__ == '__main__':

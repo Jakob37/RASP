@@ -49,10 +49,12 @@ class PynastWrapper(program_module.ProgramWrapper):
         filtered_abundance = self.output_dir + abundancy_matrix.split('/')[-1] + TAX_FILTER_SUFFIX
         annotated_otus = filtered_otus + '.annotated'
         annotated_abundance = filtered_abundance + '.annotated'
+        full_otu_annotation = file_path_dict['rdp_classifier']['rdp_otu_taxa']
 
         # Annotate OTUs command
         self.add_command_entry(get_annotate_otus_command(self.config_file, filtered_otus, filtered_abundance,
-                                                         annotated_otus, annotated_abundance, otu_taxa_table))
+                                                         annotated_otus, annotated_abundance, otu_taxa_table,
+                                                         full_otu_annotation))
 
         # Run PyNAST
         pynast_alignment_fasta = self.output_dir + 'alignment.fasta'
@@ -99,7 +101,8 @@ def get_filter_bad_taxa_command(config, raw_otus, abundancy_matrix, otu_taxa_tab
     return program_module.ProgramCommand(description, short, command)
 
 
-def get_annotate_otus_command(config, raw_otus, raw_abundance, annotated_otus, annotated_abundance, taxa_otu_rank):
+def get_annotate_otus_command(config, raw_otus, raw_abundance, annotated_otus, annotated_abundance,
+                              taxa_otu_rank, fixed_rank_annotation):
 
     """
     Annotates an OTU-fasta file and an OTU-abundancy matrix
@@ -113,7 +116,8 @@ def get_annotate_otus_command(config, raw_otus, raw_abundance, annotated_otus, a
                '--input_abundancy', raw_abundance,
                '--input_taxa', taxa_otu_rank,
                '--annotated_fasta', annotated_otus,
-               '--annotated_abundancy', annotated_abundance]
+               '--annotated_abundancy', annotated_abundance,
+               '--fixed_rank_annotation', fixed_rank_annotation]
 
     return program_module.ProgramCommand(description, short, command)
 
