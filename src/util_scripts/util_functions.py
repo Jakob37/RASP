@@ -113,7 +113,7 @@ otus.fasta
 Representative sequences for the final OTUs. The OTU fasta headers are annotated with the most specific taxa for
 which RDP Classifier achieved a threshold level of certainty.
 
-otu_abundancies.tsv
+annotated_otu_abundancies.tsv
 Total abundances for the final OTUs, i.e. the number of reads represented by the different OTUs. The IDs match
 those found in otus.fasta
 

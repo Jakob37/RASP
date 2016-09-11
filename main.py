@@ -329,7 +329,7 @@ def prepare_results_folder(results_folder_path):
     copy_list = list()
     copy_list.append((FILE_PATH_DICT['build_tree']['tree_file'], 'fasttree.tre'))
     copy_list.append((FILE_PATH_DICT['pynast']['annotated_otus'], 'otus.fasta'))
-    copy_list.append((FILE_PATH_DICT['pynast']['annotated_abundance'], 'otu_abundancies.tsv'))
+    copy_list.append((FILE_PATH_DICT['pynast']['annotated_abundance'], 'annotated_otu_abundancies.tsv'))
     copy_list.append((FILE_PATH_DICT['visualize_data']['abundance_barplot_data'], 'abundance_barplot_data.tsv'))
     copy_list.append((FILE_PATH_DICT['visualize_data']['otu_barplot_data'], 'otu_barplot_data.tsv'))
     copy_list.append((FILE_PATH_DICT['indices']['rarefaction_curve'], 'rarefaction.png'))
