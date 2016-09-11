@@ -49,7 +49,7 @@ class BuildTreeModule(program_module.ProgramWrapper):
         otu_color_taxa_table = file_path_dict['rdp_classifier']['otu_color_taxa_table']
 
         # Run ETE to create tree rendering
-        ete_output = self.path_generator('output') + 'ete_tree'
+        ete_output = self.path_generator('output') + 'fasttree'
         otu_abundance_information_fp = file_path_dict['pynast']['taxa_filtered_otu_abundancies']
         labels_fp = file_path_dict['rdp_classifier']['itol_labels']
         self.add_command_entry(get_ete_command(self.config_file, tree_fp, ete_output, otu_abundance_information_fp,
